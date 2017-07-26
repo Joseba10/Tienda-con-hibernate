@@ -1,5 +1,10 @@
 package com.ipartek.TIPOS;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
 	private int id;

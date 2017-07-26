@@ -2,22 +2,40 @@ package com.ipartek.TIPOS;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "facturas")
 public class Factura {
 
 	public static int siguiente_factura;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
 	private int numero_factura;
-	private int id_usuarios;
+
+	@ManyToOne
+	@Column(name = "id_usuarios")
+	private Usuario usuario;
+
 	private Date fecha;
 
 	public Factura() {
 
 	}
 
-	public Factura(int numero_facturas, int id_usuarios, Date fecha) {
+	public Factura(int numero_facturas, Usuario id_usuarios, Date fecha) {
 
 		this.numero_factura = numero_facturas;
-		this.id_usuarios = id_usuarios;
+		this.usuario = id_usuarios;
 		this.fecha = fecha;
 
 	}
@@ -38,12 +56,12 @@ public class Factura {
 		this.id = id;
 	}
 
-	public int getId_usuarios() {
-		return id_usuarios;
+	public Usuario getId_usuarios() {
+		return usuario;
 	}
 
-	public void setId_usuarios(int id_usuarios) {
-		this.id_usuarios = id_usuarios;
+	public Usuario setId_usuarios(Usuario id_usuarios) {
+		return this.usuario = id_usuarios;
 	}
 
 	public Date getFecha() {
@@ -54,11 +72,11 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
-	public Factura(int id_usuarios, Date fecha) {
+	public Factura(Usuario id_usuarios, Date fecha) {
 		super();
 
 		this.numero_factura = siguiente_factura;
-		this.id_usuarios = id_usuarios;
+		this.usuario = id_usuarios;
 		this.fecha = fecha;
 		siguiente_factura++;
 	}
@@ -69,7 +87,8 @@ public class Factura {
 		int result = 1;
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + id;
-		result = prime * result + id_usuarios;
+		result = prime * result + numero_factura;
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -89,9 +108,13 @@ public class Factura {
 			return false;
 		if (id != other.id)
 			return false;
-		if (id_usuarios != other.id_usuarios)
+		if (numero_factura != other.numero_factura)
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}
-
 }

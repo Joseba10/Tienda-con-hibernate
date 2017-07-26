@@ -1,11 +1,21 @@
 package com.ipartek.TIPOS;
 
-//import com.ipartek.catalogo.DAL.ProductoDalColeccion;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+//import com.ipartek.catalogo.DAL.ProductoDalColeccion;
+@Entity
+@Table(name = "productos")
 public class Producto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	int id;
 
 	String nombre, descripcion, errores;
-	int id, imagen, cantidad;
+	int imagen, cantidad;
 	double precio;
 
 	public Producto() {
