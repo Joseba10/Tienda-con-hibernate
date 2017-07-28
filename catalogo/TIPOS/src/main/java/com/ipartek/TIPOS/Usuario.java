@@ -1,6 +1,8 @@
 package com.ipartek.TIPOS;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -8,10 +10,14 @@ import javax.persistence.Table;
 public class Usuario {
 
 	private int id;
-	private int id_roles;
+	private Rol roles;
 	private String nombre_completo;
 	private String password;
-	private String username;
+
+	@ManyToOne
+	@Column(name = "username")
+	private Factura username;
+
 	private String errores;
 
 	public String getErrores() {
@@ -22,7 +28,7 @@ public class Usuario {
 		this.errores = errores;
 	}
 
-	public Usuario(int id, int id_roles, String username, String password, String nombre_completo) {
+	public Usuario(int id, int id_roles, Usuario username, String password, String nombre_completo) {
 		super();
 		this.id = id;
 		this.id_roles = id_roles;
@@ -36,7 +42,7 @@ public class Usuario {
 
 	}
 
-	public Usuario(int id_roles, String nombre_completo, String password, String username) {
+	public Usuario(int id_roles, String nombre_completo, String password, Usuario username) {
 		super();
 
 		this.id_roles = id_roles;
@@ -126,11 +132,11 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public String getUsername() {
+	public Usuario getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(Usuario username) {
 		this.username = username;
 	}
 

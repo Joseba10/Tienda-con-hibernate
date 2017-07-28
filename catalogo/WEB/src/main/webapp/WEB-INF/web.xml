@@ -10,9 +10,20 @@
 		<servlet-name>Zonadecompra</servlet-name>
 		<servlet-class>controladores.Zonadecompra</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Pruebahibernate</display-name>
+		<servlet-name>Pruebahibernate</servlet-name>
+		<servlet-class>controladores.Pruebahibernate</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Zonadecompra</servlet-name>
 		<url-pattern>/Zonadecompra</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Pruebahibernate</servlet-name>
+		<url-pattern>/Pruebahibernate</url-pattern>
 	</servlet-mapping>
 	      
 	      <welcome-file-list>

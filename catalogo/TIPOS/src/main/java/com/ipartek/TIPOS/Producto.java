@@ -1,9 +1,11 @@
 package com.ipartek.TIPOS;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 //import com.ipartek.catalogo.DAL.ProductoDalColeccion;
@@ -13,8 +15,11 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+	@ManyToOne
+	@Column(name = "Nombre")
+	Producto producto;
 
-	String nombre, descripcion, errores;
+	String descripcion, errores;
 	int imagen, cantidad;
 	double precio;
 
@@ -31,9 +36,9 @@ public class Producto {
 		this.errores = errores;
 	}
 
-	public Producto(String nombre, double precio, String descripcion, int imagen, int cantidad) {
+	public Producto(Producto nombre, double precio, String descripcion, int imagen, int cantidad) {
 		super();
-		this.nombre = nombre;
+		this.producto = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.imagen = imagen;
@@ -81,7 +86,7 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", id=" + id + " cantidad " + cantidad + " imagen " + imagen + "]";
+		return "Producto [nombre=" + producto + ", descripcion=" + descripcion + ", precio=" + precio + ", id=" + id + " cantidad " + cantidad + " imagen " + imagen + "]";
 	}
 
 	public int getId() {
@@ -92,12 +97,12 @@ public class Producto {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Producto getNombre() {
+		return producto;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(Producto nombre) {
+		this.producto = nombre;
 	}
 
 	public String getDescripcion() {
